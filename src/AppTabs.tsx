@@ -14,7 +14,13 @@ import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
 import EntryPage from './pages/EntryPage';
 
-const AppTabs: React.FC = () => {
+interface Props {
+  loggedIn: boolean;
+}
+const AppTabs: React.FC<Props> = ({ loggedIn }) => {
+  if (!loggedIn) {
+    return <Redirect to='/login' />;
+  }
   return (
     <IonTabs>
       <IonRouterOutlet>
@@ -27,7 +33,6 @@ const AppTabs: React.FC = () => {
         <Route exact path='/my/settings'>
           <SettingsPage />
         </Route>
-        <Redirect exact path='/' to='/my/entries' />
       </IonRouterOutlet>
       <IonTabBar slot='bottom'>
         <IonTabButton tab='home' href='/my/entries'>
