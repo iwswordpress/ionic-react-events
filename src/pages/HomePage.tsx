@@ -3,12 +3,16 @@ import {
   IonHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonList,
+  IonItem,
+  IonIcon
 } from '@ionic/react';
 import React from 'react';
 
 import './HomePage.css';
-
+import { entries } from '../data';
+import { arrowForwardOutline as arrowIcon } from 'ionicons/icons';
 const HomePage: React.FC = () => {
   return (
     <IonPage>
@@ -17,7 +21,15 @@ const HomePage: React.FC = () => {
           <IonTitle>Home</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>Content Home</IonContent>
+      <IonContent className='ion-padding'>
+        <IonList>
+          {entries.map(entry => (
+            <IonItem button key={entry.id} routerLink={`entries/${entry.id}`}>
+              {entry.title} <IonIcon icon={arrowIcon} slot='end' />
+            </IonItem>
+          ))}
+        </IonList>
+      </IonContent>
     </IonPage>
   );
 };
