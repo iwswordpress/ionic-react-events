@@ -6,7 +6,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/react';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
 import './HomePage.css';
