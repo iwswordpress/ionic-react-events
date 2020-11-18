@@ -13,6 +13,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { home as homeIcon, settings as settingsIcon } from 'ionicons/icons';
 import HomePage from './pages/HomePage';
 import SettingsPage from './pages/SettingsPage';
+import EntryPage from './pages/EntryPage';
 const App: React.FC = () => {
   return (
     <IonApp>
@@ -21,6 +22,9 @@ const App: React.FC = () => {
           <IonRouterOutlet>
             <Route exact path='/home'>
               <HomePage />
+            </Route>
+            <Route exact path='/entries/:id'>
+              <EntryPage />
             </Route>
             <Route exact path='/settings'>
               <SettingsPage />
