@@ -6,7 +6,7 @@ import {
   IonToolbar
 } from '@ionic/react';
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
@@ -17,7 +17,9 @@ const HomePage: React.FC = () => {
           <IonTitle>Home</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>Home Page</IonContent>
+      <IonContent className='ion-padding'>
+        Go to <Link to='/settings'>Settings</Link>
+      </IonContent>
     </IonPage>
   );
 };
