@@ -1,9 +1,10 @@
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import React, { useState } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 
 import LoginPage from './pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { AuthContext } from './auth';
 import AppTabs from './AppTabs';
 const App: React.FC = () => {
@@ -13,7 +14,7 @@ const App: React.FC = () => {
     <IonApp>
       <AuthContext.Provider value={{ loggedIn }}>
         <IonReactRouter>
-          <IonRouterOutlet>
+          <Switch>
             <Route exact path='/login'>
               <LoginPage onLogin={() => setLoggedIn(true)} />
             </Route>
@@ -21,7 +22,10 @@ const App: React.FC = () => {
               <AppTabs />
             </Route>
             <Redirect exact path='/' to='/my/entries' />
-          </IonRouterOutlet>
+            <Route>
+              <NotFoundPage />
+            </Route>
+          </Switch>
         </IonReactRouter>
       </AuthContext.Provider>
     </IonApp>
