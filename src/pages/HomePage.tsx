@@ -12,7 +12,7 @@ import React from 'react';
 
 import './HomePage.css';
 import { entries } from '../data';
-import { arrowForwardOutline as arrowIcon } from 'ionicons/icons';
+
 const HomePage: React.FC = () => {
   return (
     <IonPage>
