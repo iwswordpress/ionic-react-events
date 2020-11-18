@@ -1,6 +1,6 @@
 {
   "appId": "uk.co.49plus.events",
-  "appName": "events",
+  "appName": "Events",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
