@@ -1,21 +1,19 @@
-import {
-  IonApp,
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar
-} from '@ionic/react';
+import { IonApp } from '@ionic/react';
 import React from 'react';
-
+import { BrowserRouter, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import SettingsPage from './pages/SettingsPage';
 const App: React.FC = () => {
   return (
     <IonApp>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>My App 2</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className='ion-padding'>Add some content here…</IonContent>
+      <BrowserRouter>
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
+        <Route exact path='/settings'>
+          <SettingsPage />
+        </Route>
+      </BrowserRouter>
     </IonApp>
   );
 };
