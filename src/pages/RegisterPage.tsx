@@ -2,35 +2,36 @@ import {
   IonButton,
   IonContent,
   IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonList,
+  IonInput,
   IonItem,
   IonLabel,
-  IonInput,
+  IonList,
   IonLoading,
-  IonText
+  IonPage,
+  IonText,
+  IonTitle,
+  IonToolbar
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
 import { auth } from '../firebase';
-import './HomePage.css';
 interface Props {
   onLogin: () => void;
 }
-const LoginPage: React.FC<Props> = ({ onLogin }) => {
+const RegisterPage: React.FC<Props> = ({ onLogin }) => {
   const { loggedIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState({ loading: false, error: false });
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
       setStatus({ loading: true, error: false });
-      const credential = await auth.signInWithEmailAndPassword(email, password);
-      setStatus({ loading: false, error: false });
+      const credential = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
       console.log('credential:', credential);
       console.log(
         `EMAIL ${credential.user.email} with ID of ${credential.user.uid}`
@@ -49,7 +50,7 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
@@ -71,12 +72,12 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
             />
           </IonItem>
         </IonList>
-        {status.error && <IonText color='danger'>Invalid credentials</IonText>}
-        <IonButton expand='block' onClick={handleLogin}>
-          Login
+        {status.error && <IonText color='danger'>Registration failed</IonText>}
+        <IonButton expand='block' onClick={handleRegister}>
+          Create Account
         </IonButton>
-        <IonButton expand='block' fill='clear' routerLink='/register'>
-          Don't have an account?
+        <IonButton expand='block' fill='clear' routerLink='/login'>
+          Already have an account?
         </IonButton>
         <IonLoading isOpen={status.loading} />
       </IonContent>
@@ -84,4 +85,4 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

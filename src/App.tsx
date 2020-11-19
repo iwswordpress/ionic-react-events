@@ -4,6 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { AuthContext } from './auth';
 import AppTabs from './AppTabs';
@@ -17,6 +18,9 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path='/login'>
               <LoginPage onLogin={() => setLoggedIn(true)} />
+            </Route>
+            <Route path='/register'>
+              <RegisterPage onLogin={() => setLoggedIn(true)} />
             </Route>
             <Route path='/my'>
               <AppTabs />
