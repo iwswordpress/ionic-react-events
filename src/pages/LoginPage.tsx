@@ -22,6 +22,7 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
       'test1@example.org',
       'test1234'
     );
+    onLogin();
     console.log('credential:', credential);
     console.log('USER: ', credential.user.email, 'ID: ', credential.user.uid);
   };
