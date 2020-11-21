@@ -22,11 +22,22 @@ export function useAuthInit(): AuthInit {
 
   useEffect(() => {
     return firebaseAuth.onAuthStateChanged(firebaseUser => {
-      console.log('onAuthStateChanged:', firebaseUser);
+      if (firebaseUser) {
+        console.log(
+          'Firebase User exists:',
+          firebaseUser.email,
+          firebaseUser.uid
+        );
+      }
+      console.log('onAuthStateChanged - firebaseUser:', firebaseUser);
       const auth = firebaseUser
         ? { loggedIn: true, userId: firebaseUser.uid }
         : { loggedIn: false };
-      setAuthInit({ loading: false, auth });
+      console.log('auth:', auth);
+      setAuthInit({
+        loading: false,
+        auth
+      });
     });
   }, []);
   return authInit;
