@@ -25,9 +25,23 @@ declare global {
         HTMLElement
       >;
     }
+    interface IntrinsicElements {
+      'iws-test': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+    interface IntrinsicElements {
+      'app-home': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
     interface MyElementAttributes {
       'first-name': string;
       'last-name': string;
+      'app-title': string;
+      'iws-app': string;
     }
     interface IntrinsicElements {
       'uc-stock-price': React.DetailedHTMLProps<
@@ -57,7 +71,12 @@ const HomePage: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
-        <my-component first-name='craig' last-name='west'></my-component>
+        <my-component
+          first-name='craig'
+          middle-name='george'
+          last-name='west'
+        ></my-component>
+
         <uc-stock-price stock-symbol='ORCL'></uc-stock-price>
         <uc-stock-finder></uc-stock-finder>
       </IonContent>
