@@ -36,7 +36,6 @@ const RegisterPage: React.FC<Props> = ({ onLogin }) => {
       console.log(
         `EMAIL ${credential.user.email} with ID of ${credential.user.uid}`
       );
-      onLogin();
     } catch (error) {
       setStatus({ loading: false, error: true });
       console.log('error:', error);
