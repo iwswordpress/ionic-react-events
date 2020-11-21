@@ -1,0 +1,33 @@
+/* Ionic Variables and Theming. For more info, please see:
+http://ionicframework.com/docs/theming/ */
+
+/** Ionic CSS Variables **/
+
+ion-button {
+  --color: white;
+  --background: orange;
+  font-weight: bold;
+  font-size: 18px;
+}
+ion-title {
+  color: orange;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+ion-item {
+  font-size: 18px;
+  color: red;
+  --color: green;
+}
+ion-content {
+  font-size: 18px;
+}
+.desc {
+  color: green;
+  background: #ccc;
+}
+.item-has-focus {
+  color: green;
+  font-size: 12px;
+}

@@ -9,6 +9,7 @@
     "@ionic/react-router": "^5.0.7",
     "firebase": "^7.14.4",
     "ionicons": "^5.0.0",
+    "iwswordpress-test": "1.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router": "^5.1.2",

@@ -11,7 +11,32 @@ import React from 'react';
 
 import './HomePage.css';
 import { entries } from '../data';
-
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'uc-stock-finder': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+    interface IntrinsicElements {
+      'my-component': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+    interface MyElementAttributes {
+      'first-name': string;
+      'last-name': string;
+    }
+    interface IntrinsicElements {
+      'uc-stock-price': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+  }
+}
 const HomePage: React.FC = () => {
   return (
     <IonPage>
@@ -32,6 +57,9 @@ const HomePage: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
+        <my-component first-name='craig' last-name='west'></my-component>
+        <uc-stock-price stock-symbol='ORCL'></uc-stock-price>
+        <uc-stock-finder></uc-stock-finder>
       </IonContent>
     </IonPage>
   );

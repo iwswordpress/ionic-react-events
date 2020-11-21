@@ -10,8 +10,18 @@ import {
   IonLabel,
   IonInput,
   IonLoading,
-  IonText
+  IonText,
+  IonIcon,
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardContent,
+  IonModal,
+  IonCheckbox
 } from '@ionic/react';
+
+import { pin, wifi, wine, warning, walk } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
@@ -23,7 +33,7 @@ const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState({ loading: false, error: false });
-
+  const [showModal, setShowModal] = useState(false);
   const handleLogin = async () => {
     try {
       setStatus({ loading: true, error: false });
@@ -47,7 +57,13 @@ const LoginPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <div style={{ display: 'flex' }}>
+            <IonTitle>Login</IonTitle>
+            <IonIcon
+              icon={wifi}
+              style={{ fontSize: '45px', color: 'green', margin: '20px' }}
+            />
+          </div>
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
@@ -77,6 +93,37 @@ const LoginPage: React.FC = () => {
           Don't have an account?
         </IonButton>
         <IonLoading isOpen={status.loading} />
+        <IonContent>
+          <IonCard>
+            <IonCardHeader>
+              <IonCardTitle>Site Policy</IonCardTitle>
+              <IonCardSubtitle>The small print</IonCardSubtitle>
+            </IonCardHeader>
+
+            <IonCardContent className='test'>
+              Keep close to Nature's heart... and break clear away, once in
+              awhile, and climb a mountain or spend a week in the woods. Wash
+              your spirit clean.
+            </IonCardContent>
+            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+              <IonButton onClick={() => setShowModal(true)}>
+                Show Modal
+              </IonButton>
+            </div>
+          </IonCard>
+
+          <IonModal isOpen={showModal}>
+            <div style={{ margin: '30px', width: '300px' }}>
+              This is modal content
+            </div>
+            <IonButton
+              onClick={() => setShowModal(false)}
+              style={{ marginBottom: '350px' }}
+            >
+              Close Modal
+            </IonButton>
+          </IonModal>
+        </IonContent>
       </IonContent>
     </IonPage>
   );

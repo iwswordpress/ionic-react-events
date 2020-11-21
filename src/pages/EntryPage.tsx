@@ -33,7 +33,9 @@ const EntryPage: React.FC = () => {
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>{entry.description} </IonContent>
+      <IonContent className='ion-padding '>
+        <div className='desc'>{entry.description} </div>
+      </IonContent>
     </IonPage>
   );
 };
