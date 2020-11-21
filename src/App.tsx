@@ -1,4 +1,4 @@
-import { IonApp } from '@ionic/react';
+import { IonApp, IonLoading } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
@@ -11,27 +11,37 @@ import { auth } from './firebase';
 import AppTabs from './AppTabs';
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [authState, setAuthState] = useState({
+    loggedIn: false,
+    loading: true
+  });
 
   useEffect(
     () =>
       auth.onAuthStateChanged(user => {
         console.log('onAuthStateChanged:', user);
-        setLoggedIn(Boolean(user));
+        setAuthState({ loading: false, loggedIn: Boolean(user) });
       }),
     []
   );
-  console.log(`rendering App with loggedIn=${loggedIn}`);
+  console.log(`rendering App with authState`, authState);
+  if (authState.loading) {
+    return <IonLoading isOpen />;
+  }
   return (
     <IonApp>
-      <AuthContext.Provider value={{ loggedIn }}>
+      <AuthContext.Provider value={{ loggedIn: authState.loggedIn }}>
         <IonReactRouter>
           <Switch>
             <Route exact path='/login'>
               <LoginPage />
             </Route>
             <Route path='/register'>
-              <RegisterPage onLogin={() => setLoggedIn(true)} />
+              <RegisterPage
+                onLogin={() => {
+                  setAuthState({ loading: false, loggedIn: true });
+                }}
+              />
             </Route>
             <Route path='/my'>
               <AppTabs />
