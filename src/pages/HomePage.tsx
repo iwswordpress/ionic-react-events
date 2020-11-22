@@ -39,9 +39,8 @@ declare global {
     }
     interface MyElementAttributes {
       'first-name': string;
+      'middle-name': string;
       'last-name': string;
-      'app-title': string;
-      'iws-app': string;
     }
     interface IntrinsicElements {
       'uc-stock-price': React.DetailedHTMLProps<

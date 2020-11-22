@@ -31,3 +31,9 @@ ion-content {
   color: green;
   font-size: 12px;
 }
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  border: 3px solid #ccc;
+  border-radius: 10px;
+}

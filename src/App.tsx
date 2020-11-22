@@ -18,13 +18,7 @@ const App: React.FC = () => {
     return <IonLoading isOpen />;
   }
   return (
-    <IonApp
-      style={{
-        maxWidth: '600px',
-        margin: '30px auto ',
-        border: '3px solid #ccc'
-      }}
-    >
+    <IonApp className='container'>
       <AuthContext.Provider value={authState.auth}>
         <IonReactRouter>
           <Switch>
