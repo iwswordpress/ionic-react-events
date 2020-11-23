@@ -70,13 +70,14 @@ const HomePage: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
+
         <my-component
-          first-name='craig'
-          middle-name='george'
-          last-name='west'
+          first-name='Craig'
+          middle-name='George'
+          last-name='West'
         ></my-component>
 
-        <uc-stock-price stock-symbol='ORCL'></uc-stock-price>
+        <uc-stock-price stock-symbol='AAPL'></uc-stock-price>
         <uc-stock-finder></uc-stock-finder>
       </IonContent>
     </IonPage>

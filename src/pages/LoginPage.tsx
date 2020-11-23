@@ -21,7 +21,7 @@ import {
   IonCheckbox
 } from '@ionic/react';
 
-import { pin, wifi, wine, warning, walk } from 'ionicons/icons';
+import { wifi } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
