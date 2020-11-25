@@ -87,15 +87,17 @@ const HomePage: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
-
-        <my-component
-          first-name='Craig'
-          middle-name='George'
-          last-name='West'
-        ></my-component>
-
-        <uc-stock-price stock-symbol='AAPL'></uc-stock-price>
-        <uc-stock-finder></uc-stock-finder>
+        <div style={{ marginTop: '30px', color: '#2196f3' }}>
+          <my-component
+            first-name='Craig'
+            middle-name='George'
+            last-name='West'
+          ></my-component>
+        </div>
+        <div style={{ maxWidth: '350px', width: '100%', marginLeft: '-30px' }}>
+          <uc-stock-price stock-symbol='AAPL'></uc-stock-price>
+          <uc-stock-finder></uc-stock-finder>
+        </div>
       </IonContent>
     </IonPage>
   );
