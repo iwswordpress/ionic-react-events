@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../firebase';
 import './HomePage.css';
-
+import { Entry, toEntry } from '../models';
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -51,23 +51,24 @@ declare global {
   }
 }
 const HomePage: React.FC = () => {
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState<any[]>([]);
 
   useEffect(() => {
     const entriesRef = firestore.collection('entries');
-    entriesRef.get().then(snapshot => {
-      console.log('snapshot', snapshot);
-      snapshot.docs.forEach(doc => {
-        console.log(doc.id, doc.data());
-        const entriesArray = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        console.log('entriesArray:', entriesArray);
-        setEntries(entriesArray);
-      });
-    });
+    // entriesRef.get().then(snapshot => {
+    //   console.log('snapshot', snapshot);
+    //   snapshot.docs.forEach(doc => {
+    //     console.log(doc.id, doc.data());
+    //     const entriesArray = snapshot.docs.map(doc => ({
+    //       id: doc.id,
+    //       ...doc.data()
+    //     }));
+    //     console.log('entriesArray:', entriesArray);
+    //     setEntries(entriesArray);
+    //   });
+    entriesRef.get().then(({ docs }) => setEntries(docs.map(toEntry)));
   }, []);
+
   return (
     <IonPage>
       <IonHeader>

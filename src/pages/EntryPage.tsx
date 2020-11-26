@@ -11,19 +11,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import './EntryPage.css';
 import { firestore } from '../firebase';
-interface RouteParams {
-  id: string;
-}
+import { Entry, toEntry, RouteParams } from '../models';
+
 const EntryPage: React.FC = () => {
   const { id } = useParams<RouteParams>();
-  const [entry, setEntry] = useState<any>();
+  const [entry, setEntry] = useState<Entry>();
 
   useEffect(() => {
     const entryRef = firestore.collection('entries').doc(id);
     entryRef.get().then(doc => {
-      const entryDoc = { id: doc.id, ...doc.data() };
+      const entryDoc = toEntry(doc);
       console.log('entryDoc: ', entryDoc);
-      setEntry(entryDoc);
+      setEntry(toEntry(doc));
     });
   }, [id]);
 
