@@ -9,7 +9,6 @@ import {
 } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-// import { entries } from '../data';
 import './EntryPage.css';
 import { firestore } from '../firebase';
 interface RouteParams {
