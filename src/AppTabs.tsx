@@ -14,6 +14,7 @@ import HomePage from './pages/HomePage';
 import { useAuth } from './auth';
 import SettingsPage from './pages/SettingsPage';
 import EntryPage from './pages/EntryPage';
+import WebComponents from './pages/WebComponents';
 
 const AppTabs: React.FC = () => {
   const { loggedIn } = useAuth();
@@ -31,6 +32,9 @@ const AppTabs: React.FC = () => {
         </Route>
         <Route exact path='/my/settings'>
           <SettingsPage />
+        </Route>
+        <Route exact path='/my/webcomponents'>
+          <WebComponents />
         </Route>
       </IonRouterOutlet>
       <IonTabBar slot='bottom'>

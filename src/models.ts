@@ -4,8 +4,8 @@ export interface Entry {
   description: string;
 }
 
-export function toEntry(doc): Entry {
-  return { id: doc.id, ...doc.data() };
+export function toEntry(doc: firebase.firestore.DocumentSnapshot): Entry {
+  return { id: doc.id, ...doc.data() } as Entry;
 }
 
 export interface RouteParams {
