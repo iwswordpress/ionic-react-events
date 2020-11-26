@@ -17,8 +17,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonCardContent,
-  IonModal,
-  IonCheckbox
+  IonModal
 } from '@ionic/react';
 
 import { wifi } from 'ionicons/icons';
