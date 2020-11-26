@@ -53,7 +53,7 @@ const WebComponents: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonTitle>Web Components</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
