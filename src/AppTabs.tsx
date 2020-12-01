@@ -9,7 +9,11 @@ import {
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { home as homeIcon, settings as settingsIcon } from 'ionicons/icons';
+import {
+  home as homeIcon,
+  settings as settingsIcon,
+  planetOutline as planetOutlineIcon
+} from 'ionicons/icons';
 import HomePage from './pages/HomePage';
 import { useAuth } from './auth';
 import SettingsPage from './pages/SettingsPage';
@@ -41,6 +45,10 @@ const AppTabs: React.FC = () => {
         <IonTabButton tab='home' href='/my/entries'>
           <IonIcon icon={homeIcon} />
           <IonLabel>Home</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='web' href='/my/webcomponents'>
+          <IonIcon icon={planetOutlineIcon} />
+          <IonLabel>Stocks</IonLabel>
         </IonTabButton>
         <IonTabButton tab='settings' href='/my/settings'>
           <IonIcon icon={settingsIcon} />
