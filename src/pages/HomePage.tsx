@@ -90,24 +90,12 @@ const HomePage: React.FC = () => {
             <IonItem
               button
               key={entry.id}
-              routerLink={`/my/entries/${entry.id}`}
+              routerLink={`/my/entries/view/${entry.id}`}
             >
               {entry.title}
             </IonItem>
           ))}
         </IonList>
-        {/* 
-        <div style={{ marginTop: '30px', color: '#2196f3' }}>
-          <my-component
-            first-name='Craig'
-            middle-name='George'
-            last-name='West'
-          ></my-component>
-        </div>
-        <div style={{ maxWidth: '350px', width: '100%', marginLeft: '-30px' }}>
-          <uc-stock-price stock-symbol='AAPL'></uc-stock-price>
-          <uc-stock-finder></uc-stock-finder>
-        </div> */}
       </IonContent>
     </IonPage>
   );

@@ -15,6 +15,7 @@ import { Entry, toEntry, RouteParams } from '../models';
 import { useAuth } from '../auth';
 
 const EntryPage: React.FC = () => {
+  console.log('render Entry');
   const { userId } = useAuth();
   const { id } = useParams<RouteParams>();
   const [entry, setEntry] = useState<Entry>();
