@@ -5,8 +5,17 @@ import {
   IonTitle,
   IonToolbar,
   IonList,
-  IonItem
+  IonItem,
+  IonFab,
+  IonFabButton,
+  IonIcon
 } from '@ionic/react';
+import {
+  home as homeIcon,
+  add as addIcon,
+  planetOutline as planetOutlineIcon
+} from 'ionicons/icons';
+
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../firebase';
 import './HomePage.css';
@@ -96,6 +105,11 @@ const HomePage: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
+        <IonFab vertical='bottom' horizontal='end'>
+          <IonFabButton routerLink='/my/entries/add'>
+            <IonIcon icon={addIcon} />
+          </IonFabButton>
+        </IonFab>
       </IonContent>
     </IonPage>
   );
