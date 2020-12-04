@@ -1,14 +1,17 @@
 import {
   IonContent,
+  IonFab,
+  IonFabButton,
   IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonList,
-  IonItem,
-  IonFab,
-  IonFabButton,
-  IonIcon
+  IonThumbnail,
+  IonImg
 } from '@ionic/react';
 import {
   home as homeIcon,
@@ -21,6 +24,7 @@ import { firestore } from '../firebase';
 import './HomePage.css';
 import { toEntry } from '../models';
 import { useAuth } from '../auth';
+import { formatDate } from '../date';
 
 declare global {
   namespace JSX {
@@ -72,7 +76,10 @@ const HomePage: React.FC = () => {
       .doc(userId)
       .collection('entries');
 
-    return entriesRef.onSnapshot(({ docs }) => setEntries(docs.map(toEntry)));
+    return entriesRef
+      .orderBy('date', 'desc')
+      .limit(7)
+      .onSnapshot(({ docs }) => setEntries(docs.map(toEntry)));
   }, [userId]);
   console.log('[HomePage] render entries: ', entries);
   return (
@@ -91,7 +98,13 @@ const HomePage: React.FC = () => {
               key={entry.id}
               routerLink={`/my/entries/view/${entry.id}`}
             >
-              {entry.title}
+              <IonThumbnail slot='end'>
+                <IonImg src={entry.pictureUrl} />
+              </IonThumbnail>
+              <IonLabel>
+                <h2>{formatDate(entry.date)}</h2>
+                <h3>{entry.title}</h3>
+              </IonLabel>
             </IonItem>
           ))}
         </IonList>
