@@ -26,45 +26,6 @@ import { toEntry } from '../models';
 import { useAuth } from '../auth';
 import { formatDate } from '../date';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'uc-stock-finder': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-    interface IntrinsicElements {
-      'my-component': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-    interface IntrinsicElements {
-      'iws-test': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-    interface IntrinsicElements {
-      'app-home': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-    interface MyElementAttributes {
-      'first-name': string;
-      'middle-name': string;
-      'last-name': string;
-    }
-    interface IntrinsicElements {
-      'uc-stock-price': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >;
-    }
-  }
-}
 const HomePage: React.FC = () => {
   const { userId } = useAuth();
   console.log('userId: ', userId);
