@@ -71,20 +71,10 @@ const HomePage: React.FC = () => {
       .collection('users')
       .doc(userId)
       .collection('entries');
-    // entriesRef.get().then(snapshot => {
-    //   console.log('snapshot', snapshot);
-    //   snapshot.docs.forEach(doc => {
-    //     console.log(doc.id, doc.data());
-    //     const entriesArray = snapshot.docs.map(doc => ({
-    //       id: doc.id,
-    //       ...doc.data()
-    //     }));
-    //     console.log('entriesArray:', entriesArray);
-    //     setEntries(entriesArray);
-    //   });
-    entriesRef.get().then(({ docs }) => setEntries(docs.map(toEntry)));
-  }, [userId]);
 
+    return entriesRef.onSnapshot(({ docs }) => setEntries(docs.map(toEntry)));
+  }, [userId]);
+  console.log('[HomePage] render entries: ', entries);
   return (
     <IonPage>
       <IonHeader>
