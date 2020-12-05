@@ -20,7 +20,8 @@
   "scripts": {
     "start": "ionic serve",
     "build": "ionic build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "serve": "serve -s build"
   },
   "eslintConfig": {
     "extends": "react-app"
