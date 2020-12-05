@@ -24,7 +24,6 @@ import { formatDate } from '../date';
 import './EntryPage.css';
 
 const EntryPage: React.FC = () => {
-  console.log('render Entry');
   const { userId } = useAuth();
   const { id } = useParams<RouteParams>();
   const [entry, setEntry] = useState<Entry>();
@@ -39,7 +38,6 @@ const EntryPage: React.FC = () => {
       .doc(id);
     entryRef.get().then(doc => {
       const entryDoc = toEntry(doc);
-      console.log('entryDoc: ', entryDoc);
       setEntry(toEntry(doc));
     });
   }, [id]);
@@ -51,13 +49,10 @@ const EntryPage: React.FC = () => {
       .collection('entries')
       .doc(id);
     await entryRef.delete();
-    console.log(`Item ${id} ${entry.title} DELETED`);
     history.goBack();
   };
   const goBack = () => history.goBack();
-  const handleEdit = () => {
-    console.log(`HANDLE EDIT ${id}`);
-  };
+
   return (
     <IonPage>
       <IonHeader>

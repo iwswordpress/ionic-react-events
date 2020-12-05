@@ -49,9 +49,9 @@ const EditEntryPage: React.FC = () => {
   const goBack = () => history.goBack();
   const handleUpdate = async () => {
     const rnd = Math.floor(Math.random() * 1000);
-    console.log('UPDATE');
+    //console.log('UPDATE');
     const entryData = { date, title, description };
-    console.log('New entry will be: ', entryData);
+    //console.log('New entry will be: ', entryData);
     const entryRef = firestore
       .collection('users')
       .doc(userId)

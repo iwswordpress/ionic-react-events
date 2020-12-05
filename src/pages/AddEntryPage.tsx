@@ -85,7 +85,7 @@ const AddEntryPage: React.FC = () => {
       entryData.pictureUrl = await savePicture(pictureUrl, userId);
     }
     const entryRef = await entriesRef.add(entryData);
-    console.log('saved:', entryRef.id);
+    //console.log('saved:', entryRef.id);
     history.goBack();
   };
 

@@ -28,7 +28,7 @@ import { formatDate } from '../date';
 
 const HomePage: React.FC = () => {
   const { userId } = useAuth();
-  console.log('userId: ', userId);
+  //console.log('userId: ', userId);
   const [entries, setEntries] = useState<any[]>([]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
       .orderBy('date', 'desc')
       .onSnapshot(({ docs }) => setEntries(docs.map(toEntry)));
   }, [userId]);
-  console.log('[HomePage] render entries: ', entries);
+  //console.log('[HomePage] render entries: ', entries);
   return (
     <IonPage>
       <IonHeader>
