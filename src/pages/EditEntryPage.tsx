@@ -21,7 +21,7 @@ import {
   arrowBack as backIcon
 } from 'ionicons/icons';
 import React, { useState, useEffect, useRef } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams, Redirect } from 'react-router';
 import { Entry, toEntry, RouteParams } from '../models';
 import { useAuth } from '../auth';
 import { firestore } from '../firebase';
@@ -34,10 +34,10 @@ const EditEntryPage: React.FC = () => {
   const history = useHistory();
   console.log('userId - ', userId);
 
-  const [date, setDate] = useState('');
-  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('5 DEC 2020');
+  const [title, setTitle] = useState('Get from firestore');
   const [pictureUrl, setPictureUrl] = useState('/assets/placeholder.png');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('Description from DB');
   const fileInputRef = useRef<HTMLInputElement>();
   useEffect(
     () => () => {

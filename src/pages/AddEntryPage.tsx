@@ -96,9 +96,7 @@ const AddEntryPage: React.FC = () => {
           <IonButtons slot='start'>
             <IonBackButton> Back</IonBackButton>
           </IonButtons>
-          <IonButtons slot='start'>
-            <IonBackButton />
-          </IonButtons>
+
           <IonTitle>Add Entry</IonTitle>
         </IonToolbar>
       </IonHeader>

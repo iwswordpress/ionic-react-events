@@ -39,7 +39,6 @@ const HomePage: React.FC = () => {
 
     return entriesRef
       .orderBy('date', 'desc')
-      .limit(7)
       .onSnapshot(({ docs }) => setEntries(docs.map(toEntry)));
   }, [userId]);
   console.log('[HomePage] render entries: ', entries);
