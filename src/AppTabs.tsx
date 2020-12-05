@@ -19,6 +19,7 @@ import { useAuth } from './auth';
 import SettingsPage from './pages/SettingsPage';
 import EntryPage from './pages/EntryPage';
 import AddEntryPage from './pages/AddEntryPage';
+import EditEntryPage from './pages/EditEntryPage';
 import WebComponents from './pages/WebComponents';
 
 const AppTabs: React.FC = () => {
@@ -34,6 +35,9 @@ const AppTabs: React.FC = () => {
         </Route>
         <Route exact path='/my/entries/add'>
           <AddEntryPage />
+        </Route>
+        <Route exact path='/my/entries/edit/:id'>
+          <EditEntryPage />
         </Route>
         <Route exact path='/my/entries/view/:id'>
           <EntryPage />

@@ -1,5 +1,6 @@
 import {
   IonBackButton,
+  IonIcon,
   IonButton,
   IonButtons,
   IonContent,
@@ -12,30 +13,27 @@ import {
   IonPage,
   IonTextarea,
   IonTitle,
-  IonToolbar,
-  isPlatform
+  IonToolbar
 } from '@ionic/react';
-import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
+import {
+  trash as trashIcon,
+  createOutline as editIcon,
+  arrowBack as backIcon
+} from 'ionicons/icons';
 import React, { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import { Entry, toEntry, RouteParams } from '../models';
 import { useAuth } from '../auth';
-import { firestore, storage } from '../firebase';
-const { Camera } = Plugins;
+import { firestore } from '../firebase';
 
-async function savePicture(blobUrl, userId) {
-  const pictureRef = storage.ref(`/users/${userId}/pictures/${Date.now()}`);
-  const response = await fetch(blobUrl);
-  const blob = await response.blob();
-  const snapshot = await pictureRef.put(blob);
-  const url = await snapshot.ref.getDownloadURL();
-  console.log('saved picture:', url);
-  return url;
-}
-
-const AddEntryPage: React.FC = () => {
+const EditEntryPage: React.FC = () => {
   const { userId } = useAuth();
-  console.log('userId - ', userId);
+
+  const { id } = useParams<RouteParams>();
+  const [entry, setEntry] = useState<Entry>();
   const history = useHistory();
+  console.log('userId - ', userId);
+
   const [date, setDate] = useState('');
   const [title, setTitle] = useState('');
   const [pictureUrl, setPictureUrl] = useState('/assets/placeholder.png');
@@ -49,41 +47,14 @@ const AddEntryPage: React.FC = () => {
     },
     [pictureUrl]
   );
-
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files.length > 0) {
-  //     const file = event.target.files.item(0);
-  //     const pictureUrl = URL.createObjectURL(file);
-  //     setPictureUrl(pictureUrl);
-  //   }
-  // };
-
-  // const handlePictureClick = async () => {
-  //   if (isPlatform('capacitor')) {
-  //     try {
-  //       const photo = await Camera.getPhoto({
-  //         resultType: CameraResultType.Uri,
-  //         source: CameraSource.Prompt,
-  //         width: 600
-  //       });
-  //       setPictureUrl(photo.webPath);
-  //     } catch (error) {
-  //       console.log('Camera error:', error);
-  //     }
-  //   } else {
-  //     fileInputRef.current.click();
-  //   }
-  // };
-
-  const handleSave = async () => {
+  const goBack = () => history.goBack();
+  const handleUpdate = async () => {
     const entriesRef = firestore
       .collection('users')
       .doc(userId)
       .collection('entries');
     const entryData = { date, title, pictureUrl, description };
-    if (!pictureUrl.startsWith('/assets')) {
-      entryData.pictureUrl = await savePicture(pictureUrl, userId);
-    }
+
     const entryRef = await entriesRef.add(entryData);
     console.log('saved:', entryRef.id);
     history.goBack();
@@ -94,15 +65,15 @@ const AddEntryPage: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot='start'>
-            <IonBackButton> Back</IonBackButton>
+            <IonButton onClick={goBack}>
+              <IonIcon icon={backIcon} slot='icon-only' />
+            </IonButton>
           </IonButtons>
-          <IonButtons slot='start'>
-            <IonBackButton />
-          </IonButtons>
-          <IonTitle>Add Entry</IonTitle>
+          <IonTitle>Edit Entry</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
+        <h3>{id}</h3>
         <IonItem>
           <IonLabel position='stacked'>Date</IonLabel>
           <IonDatetime
@@ -143,12 +114,12 @@ const AddEntryPage: React.FC = () => {
             />
           </IonItem>
         </IonList>
-        <IonButton expand='block' onClick={handleSave}>
-          Save
+        <IonButton expand='block' onClick={handleUpdate}>
+          Update
         </IonButton>
       </IonContent>
     </IonPage>
   );
 };
 
-export default AddEntryPage;
+export default EditEntryPage;

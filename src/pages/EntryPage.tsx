@@ -9,13 +9,18 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/react';
-import { trash as trashIcon } from 'ionicons/icons';
+import {
+  trash as trashIcon,
+  createOutline as editIcon,
+  arrowBack as backIcon
+} from 'ionicons/icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import './EntryPage.css';
 import { firestore } from '../firebase';
 import { Entry, toEntry, RouteParams } from '../models';
 import { useAuth } from '../auth';
+import './EntryPage.css';
 
 const EntryPage: React.FC = () => {
   console.log('render Entry');
@@ -48,25 +53,34 @@ const EntryPage: React.FC = () => {
     console.log(`Item ${id} ${entry.title} DELETED`);
     history.goBack();
   };
+  const goBack = () => history.goBack();
+  const handleEdit = () => {
+    console.log(`HANDLE EDIT ${id}`);
+  };
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot='start'>
-            <IonBackButton> Back</IonBackButton>
+            <IonButton onClick={goBack}>
+              <IonIcon icon={backIcon} slot='icon-only' />
+            </IonButton>
           </IonButtons>
           <IonButtons slot='end'>
+            <IonButton href={`/my/entries/edit/${id}`}>
+              <IonIcon icon={editIcon} slot='icon-only' />
+            </IonButton>
             <IonButton onClick={handleDelete}>
               <IonIcon icon={trashIcon} slot='icon-only' />
             </IonButton>
           </IonButtons>
-          <IonTitle>
-            {entry?.id}:{entry?.title}
-          </IonTitle>
+          <IonTitle>View Entry</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding '>
-        <div className='desc'>{entry?.description} </div>
+        <div className='entry'>{entry?.id}</div>
+        <div className='title'>{entry?.title} </div>
+        <div className='description'>{entry?.description} </div>
       </IonContent>
     </IonPage>
   );
