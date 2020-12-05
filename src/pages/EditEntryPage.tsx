@@ -32,7 +32,6 @@ const EditEntryPage: React.FC = () => {
   const { id } = useParams<RouteParams>();
   const [entry, setEntry] = useState<Entry>();
   const history = useHistory();
-  console.log('userId - ', userId);
 
   const [date, setDate] = useState('5 DEC 2020');
   const [title, setTitle] = useState('Get from firestore');
@@ -49,14 +48,22 @@ const EditEntryPage: React.FC = () => {
   );
   const goBack = () => history.goBack();
   const handleUpdate = async () => {
-    const entriesRef = firestore
+    const rnd = Math.floor(Math.random() * 1000);
+    console.log('UPDATE');
+    const entryData = { date, title, description };
+    console.log('New entry will be: ', entryData);
+    const entryRef = firestore
       .collection('users')
       .doc(userId)
-      .collection('entries');
-    const entryData = { date, title, pictureUrl, description };
+      .collection('entries')
+      .doc(id);
 
-    const entryRef = await entriesRef.add(entryData);
-    console.log('saved:', entryRef.id);
+    await entryRef.update({
+      date,
+      title: `${rnd} - ${title}`,
+      description: `NEW! ${rnd} - ${description}`
+    });
+
     history.goBack();
   };
 

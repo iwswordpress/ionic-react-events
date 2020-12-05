@@ -20,6 +20,7 @@ import './EntryPage.css';
 import { firestore } from '../firebase';
 import { Entry, toEntry, RouteParams } from '../models';
 import { useAuth } from '../auth';
+import { formatDate } from '../date';
 import './EntryPage.css';
 
 const EntryPage: React.FC = () => {
@@ -79,6 +80,7 @@ const EntryPage: React.FC = () => {
       </IonHeader>
       <IonContent className='ion-padding '>
         <div className='entry'>{entry?.id}</div>
+        <div className='entry'>{formatDate(entry?.date)}</div>
         <div className='title'>{entry?.title} </div>
         <div className='description'>{entry?.description} </div>
       </IonContent>
