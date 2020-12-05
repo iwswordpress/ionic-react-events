@@ -31,14 +31,16 @@ import './EntryPage.css';
 const EntryPage: React.FC = () => {
   const { userId } = useAuth();
   const { id } = useParams<RouteParams>();
-  const [entry, setEntry] = useState<Entry>();
+  const fileInputRef = useRef<HTMLInputElement>();
   const history = useHistory();
+
+  const [entry, setEntry] = useState<Entry>();
   const [showForm, setShowForm] = useState(false);
   const [date, setDate] = useState('');
   const [title, setTitle] = useState('');
   const [pictureUrl, setPictureUrl] = useState('/assets/placeholder.png');
   const [description, setDescription] = useState('');
-  const fileInputRef = useRef<HTMLInputElement>();
+
   const goBack = () => history.goBack();
   const getEntry = (userId, id) => {
     const entryRef = firestore
@@ -72,13 +74,11 @@ const EntryPage: React.FC = () => {
     setShowForm(!showForm);
   };
   const handleUpdate = async () => {
-    const entryData = { date, title, description };
     const entryRef = firestore
       .collection('users')
       .doc(userId)
       .collection('entries')
       .doc(id);
-
     await entryRef.update({
       date,
       title,
@@ -109,57 +109,61 @@ const EntryPage: React.FC = () => {
       </IonHeader>
       <IonContent className='ion-padding '>
         <div className='entry'>{entry?.id}</div>
-        <div className='entry'>{formatDate(entry?.date)}</div>
+        <div className='entry-date'>{formatDate(entry?.date)}</div>
         <div className='title'>{entry?.title} </div>
-        <div className='description'>{entry?.description} </div>
+        <div className='description'>{entry?.description}</div>
+
+        {showForm && (
+          <div className='edit-form'>
+            <IonItem>
+              <IonLabel position='stacked'>Date</IonLabel>
+              <IonDatetime
+                value={date}
+                onIonChange={event => setDate(event.detail.value)}
+              />
+            </IonItem>
+            <IonList>
+              <IonItem>
+                <IonLabel position='stacked'>Title</IonLabel>
+                <IonInput
+                  value={title}
+                  onIonChange={event => setTitle(event.detail.value)}
+                />
+              </IonItem>
+              <IonItem>
+                <IonLabel position='stacked'>Picture</IonLabel>
+                <br />
+                <input
+                  type='file'
+                  accept='image/*'
+                  hidden
+                  ref={fileInputRef}
+                  // onChange={handleFileChange}
+                />
+                <img
+                  src={pictureUrl}
+                  alt=''
+                  style={{ cursor: 'pointer' }}
+                  // onClick={handlePictureClick}
+                />
+              </IonItem>
+              <IonItem>
+                <IonLabel position='stacked'>Description</IonLabel>
+                <IonTextarea
+                  value={description}
+                  onIonChange={event => setDescription(event.detail.value)}
+                />
+              </IonItem>
+            </IonList>
+            <IonButton expand='block' onClick={handleUpdate}>
+              Update
+            </IonButton>
+            <IonButton expand='block' color='danger' onClick={toggleForm}>
+              Cancel
+            </IonButton>
+          </div>
+        )}
       </IonContent>
-      {showForm && (
-        <div>
-          <IonItem>
-            <IonLabel position='stacked'>Date</IonLabel>
-            <IonDatetime
-              value={date}
-              onIonChange={event => setDate(event.detail.value)}
-            />
-          </IonItem>
-          <IonList>
-            <IonItem>
-              <IonLabel position='stacked'>Title</IonLabel>
-              <IonInput
-                value={title}
-                onIonChange={event => setTitle(event.detail.value)}
-              />
-            </IonItem>
-            <IonItem>
-              <IonLabel position='stacked'>Picture</IonLabel>
-              <br />
-              <input
-                type='file'
-                accept='image/*'
-                hidden
-                ref={fileInputRef}
-                // onChange={handleFileChange}
-              />
-              <img
-                src={pictureUrl}
-                alt=''
-                style={{ cursor: 'pointer' }}
-                // onClick={handlePictureClick}
-              />
-            </IonItem>
-            <IonItem>
-              <IonLabel position='stacked'>Description</IonLabel>
-              <IonTextarea
-                value={description}
-                onIonChange={event => setDescription(event.detail.value)}
-              />
-            </IonItem>
-          </IonList>
-          <IonButton expand='block' onClick={handleUpdate}>
-            Update
-          </IonButton>
-        </div>
-      )}
     </IonPage>
   );
 };
