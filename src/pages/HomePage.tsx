@@ -50,7 +50,9 @@ const HomePage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
-        <p>{userId}</p>
+        <IonList>
+          <IonItem style={{ fontSize: '12px' }}>UserID: {userId}</IonItem>
+        </IonList>
         <IonList>
           {entries.map(entry => (
             <IonItem
@@ -68,7 +70,7 @@ const HomePage: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
-        <IonFab vertical='bottom' horizontal='end'>
+        <IonFab vertical='bottom' horizontal='end' style={{ margin: '20px' }}>
           <IonFabButton routerLink='/my/entries/add'>
             <IonIcon icon={addIcon} />
           </IonFabButton>

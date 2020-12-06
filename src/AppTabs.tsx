@@ -12,6 +12,9 @@ import { Route, Redirect } from 'react-router-dom';
 import {
   home as homeIcon,
   settings as settingsIcon,
+  logoBuffer as logoIcon,
+  bus as busIcon,
+  cafe as cafeIcon,
   planetOutline as planetOutlineIcon
 } from 'ionicons/icons';
 import HomePage from './pages/HomePage';
@@ -58,6 +61,18 @@ const AppTabs: React.FC = () => {
         <IonTabButton tab='web' href='/my/webcomponents'>
           <IonIcon icon={planetOutlineIcon} />
           <IonLabel>Stocks</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='web' href='/my/webcomponents'>
+          <IonIcon icon={busIcon} />
+          <IonLabel>Other</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='web' href='/my/webcomponents'>
+          <IonIcon icon={logoIcon} />
+          <IonLabel>Other</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='web' href='/my/webcomponents'>
+          <IonIcon icon={cafeIcon} />
+          <IonLabel>Other</IonLabel>
         </IonTabButton>
         <IonTabButton tab='settings' href='/my/settings'>
           <IonIcon icon={settingsIcon} />
