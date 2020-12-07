@@ -63,7 +63,7 @@ const WebComponents: React.FC = () => {
           ></my-component>
         </div>
         <div style={{ marginTop: '30px', color: 'green', fontWeight: 'bold' }}>
-          <iws-worpdress />
+          <iws-wordpress />
         </div>
         <div style={{ maxWidth: '350px', width: '100%', marginTop: '10px' }}>
           <iws-stock-price stock-symbol='AAPL'></iws-stock-price>
