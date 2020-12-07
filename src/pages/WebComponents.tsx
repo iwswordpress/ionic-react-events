@@ -18,6 +18,12 @@ declare global {
       >;
     }
     interface IntrinsicElements {
+      'iws-wordpress': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+    interface IntrinsicElements {
       'my-component': React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
@@ -56,7 +62,10 @@ const WebComponents: React.FC = () => {
             last-name='West'
           ></my-component>
         </div>
-        <div style={{ maxWidth: '350px', width: '100%', marginLeft: '-30px' }}>
+        <div style={{ marginTop: '30px', color: 'green', fontWeight: 'bold' }}>
+          <iws-worpdress />
+        </div>
+        <div style={{ maxWidth: '350px', width: '100%', marginTop: '10px' }}>
           <iws-stock-price stock-symbol='AAPL'></iws-stock-price>
           <iws-stock-finder></iws-stock-finder>
         </div>
