@@ -26,7 +26,7 @@ import './theme/cw.css';
 import {
   applyPolyfills,
   defineCustomElements as defineIWS
-} from 'iwswordpress-ionic/loader';
+} from 'iwswordpress-wp/loader';
 const { SplashScreen } = Plugins;
 ReactDOM.render(<App />, document.getElementById('root'));
 SplashScreen.hide();

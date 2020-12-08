@@ -56,18 +56,7 @@ const WebComponents: React.FC = () => {
       </IonHeader>
       <IonContent className='ion-padding'>
         <div style={{ marginTop: '30px', color: 'green', fontWeight: 'bold' }}>
-          <my-component
-            first-name='Craig'
-            middle-name='George'
-            last-name='West'
-          ></my-component>
-        </div>
-        <div style={{ marginTop: '30px', color: 'green', fontWeight: 'bold' }}>
           <iws-wordpress />
-        </div>
-        <div style={{ maxWidth: '350px', width: '100%', marginTop: '10px' }}>
-          <iws-stock-price stock-symbol='AAPL'></iws-stock-price>
-          <iws-stock-finder></iws-stock-finder>
         </div>
       </IonContent>
     </IonPage>
